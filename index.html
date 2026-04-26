@@ -3,113 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protección UV - Proyecto 2do Parcial CETIS 62</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Protección UV | CETIS 62 - 2do Parcial</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
-        
-        body {
-            font-family: 'Outfit', sans-serif;
+        :root {
+            --sun-glow: #fbbf24;
+            --uv-high: #ef4444;
+            --bg-dark: #0f172a;
+            --card-glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
             scroll-behavior: smooth;
         }
 
-        .uv-gradient {
-            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f8fafc;
+            overflow-x: hidden;
+            cursor: default;
         }
 
-        .card-blur {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
+        /* Títulos con fuente Space Grotesk para un toque moderno */
+        .display-font {
+            font-family: 'Space Grotesk', 'Outfit', sans-serif;
         }
 
-        .custom-shadow {
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        /* Hero con fondo animado de partículas simuladas con CSS */
+        .hero-bg {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 30%, #1a1a2e 60%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(239, 68, 68, 0.10) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(251, 146, 60, 0.08) 0%, transparent 40%);
+            animation: floatParticles 20s ease-in-out infinite;
+        }
+        @keyframes floatParticles {
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(2%, -1%) rotate(1deg);
+            }
+            50% {
+                transform: translate(-1%, 2%) rotate(-1deg);
+            }
+            75% {
+                transform: translate(1%, 1%) rotate(0.5deg);
+            }
         }
 
-        .interactive-btn:active {
-            transform: scale(0.95);
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(2px 2px at 15% 25%, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(2px 2px at 35% 55%, rgba(255, 255, 255, 0.4), transparent),
+                radial-gradient(1px 1px at 55% 35%, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(1.5px 1.5px at 70% 15%, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(2px 2px at 80% 65%, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(1px 1px at 20% 75%, rgba(255, 255, 255, 0.4), transparent),
+                radial-gradient(1.5px 1.5px at 60% 85%, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 90% 40%, rgba(255, 255, 255, 0.35), transparent),
+                radial-gradient(2px 2px at 45% 10%, rgba(255, 255, 255, 0.45), transparent),
+                radial-gradient(1px 1px at 10% 50%, rgba(255, 255, 255, 0.5), transparent);
+            animation: twinkle 4s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes twinkle {
+            0% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Sol animado */
+        .sun-core {
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, #fef08a 10%, #fbbf24 40%, #f59e0b 70%, transparent 72%);
+            border-radius: 50%;
+            animation: sunPulse 3s ease-in-out infinite;
+            box-shadow: 0 0 80px 30px rgba(251, 191, 36, 0.5), 0 0 160px 60px rgba(251, 146, 60, 0.25),
+                0 0 240px 90px rgba(239, 68, 68, 0.12);
+            position: relative;
+        }
+        .sun-core::after {
+            content: '';
+            position: absolute;
+            inset: -25px;
+            border-radius: 50%;
+            border: 2px dashed rgba(251, 191, 36, 0.35);
+            animation: spinSlow 25s linear infinite;
+        }
+        @keyframes sunPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 80px 30px rgba(251, 191, 36, 0.5), 0 0 160px 60px rgba(251, 146, 60, 0.25),
+                    0 0 240px 90px rgba(239, 68, 68, 0.12);
+            }
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 100px 40px rgba(251, 191, 36, 0.6), 0 0 180px 70px rgba(251, 146, 60, 0.3),
+                    0 0 260px 100px rgba(239, 68, 68, 0.18);
+            }
+        }
+        @keyframes spinSlow {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 2rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .dark-glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        }
+        .dark-glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.18);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Botón interactivo */
+        .btn-bounce {
+            transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .btn-bounce:active {
+            transform: scale(0.9);
+        }
+
+        /* Barra de progreso animada */
+        .progress-glow {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f97316;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c;
+        }
+
+        /* Animación de entrada */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Confeti */
+        .confetti-piece {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            animation: confettiFall 3s ease-out forwards;
+        }
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-120px) rotate(0deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(105vh) rotate(720deg) scale(0.3);
+            }
+        }
+
+        /* Tooltip flotante UV */
+        .uv-glow-ring {
+            animation: glowRing 2s ease-in-out infinite;
+        }
+        @keyframes glowRing {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 25px rgba(251, 146, 60, 0);
+            }
+        }
+
+        /* Navegación con indicador */
+        .nav-indicator {
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            background: #f97316;
+            border-radius: 3px 3px 0 0;
+            transition: left 0.3s ease, width 0.3s ease;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-slate-50 text-slate-900 antialiased">
 
-    <!-- Navegación -->
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-bold text-xl text-orange-600">CETIS 62</span>
-            <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#informe" class="hover:text-orange-600 transition">Informe</a>
-                <a href="#organizador" class="hover:text-orange-600 transition">Organizador</a>
-                <a href="#calculadora" class="hover:text-orange-600 transition">Calculadora</a>
-                <a href="#meta" class="hover:text-orange-600 transition">Meta 500 Likes</a>
+    <!-- Navegación mejorada -->
+    <nav class="fixed w-full z-50 bg-white/70 backdrop-blur-xl border-b border-slate-200/60 shadow-sm" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 py-3.5 flex justify-between items-center relative">
+            <a href="#" class="flex items-center gap-3 group">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center text-white font-black text-sm shadow-lg shadow-orange-500/25 group-hover:shadow-orange-500/40 transition">
+                    C62
+                </div>
+                <span class="font-bold text-lg text-slate-800 hidden sm:block">CETIS 62</span>
+            </a>
+            <div class="hidden md:flex gap-1 text-sm font-semibold" id="navLinks">
+                <a href="#informe" class="nav-link px-4 py-2 rounded-xl hover:bg-orange-50 hover:text-orange-600 transition">Informe</a>
+                <a href="#organizador" class="nav-link px-4 py-2 rounded-xl hover:bg-orange-50 hover:text-orange-600 transition">Organizador</a>
+                <a href="#calculadora" class="nav-link px-4 py-2 rounded-xl hover:bg-orange-50 hover:text-orange-600 transition">Calculadora</a>
+                <a href="#meta" class="nav-link px-4 py-2 rounded-xl hover:bg-orange-50 hover:text-orange-600 transition">Meta 500</a>
             </div>
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="p-2 rounded-xl hover:bg-slate-100 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Menú móvil -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl border-t border-slate-200 px-6 py-4 space-y-2">
+            <a href="#informe" class="block px-4 py-3 rounded-xl hover:bg-orange-50 font-semibold">📄 Informe</a>
+            <a href="#organizador" class="block px-4 py-3 rounded-xl hover:bg-orange-50 font-semibold">🧬 Organizador</a>
+            <a href="#calculadora" class="block px-4 py-3 rounded-xl hover:bg-orange-50 font-semibold">🧮 Calculadora</a>
+            <a href="#meta" class="block px-4 py-3 rounded-xl hover:bg-orange-50 font-semibold">❤️ Meta 500</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="pt-32 pb-20 px-6 uv-gradient text-white text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                Protección Personal ante la Radiación UV
+    <!-- Hero Section Rediseñado -->
+    <header class="hero-bg pt-32 pb-24 px-6 text-center relative min-h-[90vh] flex items-center justify-center">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Sol animado decorativo -->
+            <div class="flex justify-center mb-8">
+                <div class="sun-core"></div>
+            </div>
+
+            <span
+                class="inline-block px-5 py-2 bg-white/10 backdrop-blur-md rounded-full text-orange-300 text-sm font-semibold tracking-wider mb-6 border border-white/10">
+                ☀️ PROYECTO 2DO PARCIAL · DÍA DE LA TIERRA · 26 DE ABRIL
+            </span>
+            <h1 class="display-font text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight tracking-tight">
+                Protección
+                <span class="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 bg-clip-text text-transparent">
+                    UV
+                </span>
             </h1>
-            <p class="text-lg md:text-xl opacity-90 mb-10">
-                Proyecto para el 2do Parcial - "Día de la Tierra" (26 de Abril)
+            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Investigación científica, herramientas interactivas y concientización sobre la radiación ultravioleta
+                para la comunidad del <strong>CETIS 62</strong>.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#calculadora" class="bg-white text-orange-600 px-8 py-3 rounded-2xl font-bold shadow-lg hover:bg-gray-100 transition">Probar Calculadora</a>
-                <a href="#informe" class="bg-orange-800/30 text-white border border-white/30 px-8 py-3 rounded-2xl font-bold hover:bg-orange-800/40 transition">Ver Investigación</a>
+                <a href="#calculadora"
+                    class="btn-bounce inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-2xl font-bold shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 transition text-lg">
+                    🧮 Probar Calculadora UV
+                </a>
+                <a href="#informe"
+                    class="btn-bounce inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-2xl font-bold hover:bg-white/20 transition text-lg">
+                    📖 Ver Investigación
+                </a>
             </div>
         </div>
     </header>
 
     <!-- Sección 1: Informe de Investigación -->
-    <section id="informe" class="py-20 px-6 max-w-5xl mx-auto">
-        <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-2">1. Informe de Investigación</h2>
-            <p class="text-gray-500">Documentación científica y académica</p>
-            <div class="w-16 h-1 bg-orange-500 mt-4"></div>
+    <section id="informe" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="mb-16 reveal">
+            <span class="text-orange-500 font-bold text-sm tracking-widest uppercase">Sección 1</span>
+            <h2 class="display-font text-4xl md:text-5xl font-black mt-2 mb-3">Informe de Investigación</h2>
+            <p class="text-slate-500 text-lg">Documentación científica y hallazgos clave sobre radiación UV</p>
+            <div class="w-20 h-1.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mt-6"></div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="space-y-8">
-                <div>
-                    <h3 class="font-bold text-xl mb-3 flex items-center gap-2">
-                        <span class="text-orange-500">●</span> Hallazgos Científicos
+        <div class="grid lg:grid-cols-2 gap-10">
+            <div class="space-y-8 reveal" style="transition-delay: 0.1s;">
+                <div class="glass-card p-8">
+                    <h3 class="font-bold text-2xl mb-5 flex items-center gap-3 display-font">
+                        <span
+                            class="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 text-lg">🔬</span>
+                        Hallazgos Científicos
                     </h3>
-                    <div class="bg-white p-6 rounded-3xl custom-shadow space-y-4">
-                        <p class="text-sm"><strong>Tipos de Rayos:</strong> La radiación se divide en UVA (envejecimiento) y UVB (quemaduras y cáncer). Los UVC son absorbidos por la atmósfera.</p>
-                        <p class="text-sm border-t pt-4"><strong>Daño Acumulativo:</strong> La piel tiene "memoria celular". La exposición excesiva en la juventud es la causa principal del melanoma en la adultez.</p>
-                        <p class="text-xs text-gray-400 italic font-mono">Fuente: OMS / Skin Cancer Foundation</p>
+                    <div class="space-y-5 text-slate-700">
+                        <div class="bg-orange-50/80 p-5 rounded-2xl border border-orange-100">
+                            <p class="font-bold text-orange-800 mb-1">Tipos de Radiación UV</p>
+                            <p class="text-sm"><strong>UVA</strong> (envejecimiento, 95% de la radiación) ·
+                                <strong>UVB</strong> (quemaduras y cáncer) · <strong>UVC</strong> (absorbido por la capa de
+                                ozono).
+                            </p>
+                        </div>
+                        <div class="bg-red-50/80 p-5 rounded-2xl border border-red-100">
+                            <p class="font-bold text-red-800 mb-1">Daño Acumulativo en la Piel</p>
+                            <p class="text-sm">La piel tiene "memoria celular". Las exposiciones en la juventud son la
+                                principal causa de melanoma en la adultez.</p>
+                        </div>
+                        <p class="text-xs text-slate-400 italic font-mono">📚 Fuentes: OMS · Skin Cancer Foundation · NOAA
+                        </p>
                     </div>
                 </div>
-                
-                <div>
-                    <h3 class="font-bold text-xl mb-3 flex items-center gap-2">
-                        <span class="text-orange-500">●</span> Preguntas de la Comunidad
+
+                <div class="glass-card p-8">
+                    <h3 class="font-bold text-2xl mb-5 flex items-center gap-3 display-font">
+                        <span
+                            class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 text-lg">❓</span>
+                        Preguntas Frecuentes
                     </h3>
-                    <div class="bg-white p-6 rounded-3xl custom-shadow space-y-4 text-sm">
-                        <details class="cursor-pointer group">
-                            <summary class="font-semibold group-hover:text-orange-600">¿Qué es el Índice UV?</summary>
-                            <p class="mt-2 text-gray-600">Es una medida de la intensidad de la radiación UV en la superficie terrestre. Escala del 1 al 11+.</p>
+                    <div class="space-y-3 text-sm">
+                        <details class="group cursor-pointer bg-slate-50 rounded-2xl p-5 hover:bg-orange-50/50 transition">
+                            <summary class="font-semibold text-slate-800 group-hover:text-orange-600 flex justify-between items-center">
+                                ¿Qué es el Índice UV?
+                                <span class="text-orange-400 group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="mt-3 text-slate-600 leading-relaxed">Es una medida internacional de la intensidad de
+                                radiación UV en la superficie. Escala del <strong>1 (bajo) al 11+ (extremo)</strong>.</p>
                         </details>
-                        <details class="cursor-pointer group">
-                            <summary class="font-semibold group-hover:text-orange-600">¿Protege la ropa común?</summary>
-                            <p class="mt-2 text-gray-600">Depende del tejido. Las telas de trama cerrada y colores oscuros protegen mejor que las ligeras y claras.</p>
+                        <details class="group cursor-pointer bg-slate-50 rounded-2xl p-5 hover:bg-orange-50/50 transition">
+                            <summary class="font-semibold text-slate-800 group-hover:text-orange-600 flex justify-between items-center">
+                                ¿La ropa común protege?
+                                <span class="text-orange-400 group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="mt-3 text-slate-600 leading-relaxed">Depende del tejido. Telas de <strong>trama
+                                    cerrada y colores oscuros</strong> bloquean más UV que las ligeras y claras. Existe ropa
+                                con certificación UPF 50+.</p>
+                        </details>
+                        <details class="group cursor-pointer bg-slate-50 rounded-2xl p-5 hover:bg-orange-50/50 transition">
+                            <summary class="font-semibold text-slate-800 group-hover:text-orange-600 flex justify-between items-center">
+                                ¿Cada cuánto reaplicar protector?
+                                <span class="text-orange-400 group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="mt-3 text-slate-600 leading-relaxed">Cada <strong>2 horas</strong>, o inmediatamente
+                                después de nadar, secarse con toalla o sudar excesivamente.</p>
                         </details>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-orange-50 p-8 rounded-3xl border border-orange-100">
-                <h3 class="font-bold text-xl mb-4 text-orange-800">Resumen para Entrega</h3>
-                <div class="space-y-4 text-sm text-orange-900/80">
-                    <p><strong>Meta:</strong> Dar a conocer formas de protección ante radiación UV.</p>
-                    <p><strong>Fecha:</strong> 26 de Abril.</p>
-                    <div class="bg-white p-4 rounded-xl font-mono text-xs text-gray-600 leading-relaxed">
-                        // Notas para el equipo:<br>
-                        - Preparar láminas físicas<br>
-                        - Compartir el link del sitio<br>
-                        - Registrar participación
+            <div class="reveal" style="transition-delay: 0.2s;">
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 p-8 rounded-3xl border border-orange-200/60 h-full">
+                    <h3 class="font-bold text-2xl mb-6 text-orange-800 display-font">📋 Resumen para Entrega</h3>
+                    <div class="space-y-5 text-slate-700">
+                        <div class="flex items-start gap-4">
+                            <span
+                                class="w-12 h-12 bg-orange-200 rounded-2xl flex items-center justify-center text-xl shrink-0">🎯</span>
+                            <div>
+                                <p class="font-bold text-orange-900">Objetivo</p>
+                                <p class="text-sm">Dar a conocer formas efectivas de protección ante la radiación UV a la
+                                    comunidad escolar.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span
+                                class="w-12 h-12 bg-orange-200 rounded-2xl flex items-center justify-center text-xl shrink-0">📅</span>
+                            <div>
+                                <p class="font-bold text-orange-900">Fecha de Presentación</p>
+                                <p class="text-sm">Sábado 26 de Abril · Día de la Tierra 🌍</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl font-mono text-xs text-slate-500 leading-relaxed border border-orange-100">
+                            <span class="text-orange-500 font-bold">// Notas para el equipo:</span><br>
+                            ✅ Preparar láminas físicas para exposición<br>
+                            ✅ Compartir el link del sitio web interactivo<br>
+                            ✅ Registrar participación de asistentes<br>
+                            ✅ Llevar muestras de protectores solares
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-2xl border border-green-200 text-sm text-green-800">
+                            💡 <strong>Tip:</strong> Este sitio web sirve como evidencia digital del proyecto. ¡Compártelo
+                            con tus compañeros!
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,155 +425,456 @@
     </section>
 
     <!-- Sección 2: Organizador Gráfico -->
-    <section id="organizador" class="py-20 bg-gray-900 text-white px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Organizador Gráfico Digital</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Esquema visual de los fundamentos científicos de protección.</p>
+    <section id="organizador" class="py-24 bg-slate-900 text-white px-6 relative overflow-hidden">
+        <!-- Fondo decorativo -->
+        <div class="absolute inset-0 opacity-20">
+            <div
+                class="absolute top-10 left-10 w-72 h-72 bg-orange-500 rounded-full blur-3xl animate-pulse">
+            </div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse"
+                style="animation-delay: 1.5s;"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-orange-400 font-bold text-sm tracking-widest uppercase">Sección 2</span>
+                <h2 class="display-font text-4xl md:text-5xl font-black mt-2 mb-4">Organizador Gráfico Digital</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">Esquema visual interactivo de los fundamentos
+                    científicos de protección UV.</p>
             </div>
 
             <div class="grid md:grid-cols-4 gap-6">
-                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
-                    <div class="text-3xl mb-4">🧬</div>
-                    <h4 class="font-bold mb-2">ADN</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">La radiación rompe las cadenas del código genético, causando mutaciones celulares irreversibles.</p>
+                <div class="dark-glass-card p-8 text-center reveal" style="transition-delay: 0.05s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-3xl mb-5 mx-auto shadow-lg shadow-purple-500/20">
+                        🧬</div>
+                    <h4 class="font-bold text-xl mb-3 display-font">ADN Celular</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">La radiación UV rompe las cadenas del código
+                        genético, causando mutaciones irreversibles que pueden derivar en cáncer de piel.</p>
                 </div>
-                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
-                    <div class="text-3xl mb-4">🧤</div>
-                    <h4 class="font-bold mb-2">Barrera</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">El uso de manga larga y sombreros de ala ancha reduce la exposición directa en un 70%.</p>
+                <div class="dark-glass-card p-8 text-center reveal" style="transition-delay: 0.1s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-3xl mb-5 mx-auto shadow-lg shadow-blue-500/20">
+                        🧤</div>
+                    <h4 class="font-bold text-xl mb-3 display-font">Barrera Física</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Manga larga, sombreros de ala ancha y tejidos UPF
+                        50+ reducen la exposición directa hasta en un <strong>70%</strong>.</p>
                 </div>
-                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
-                    <div class="text-3xl mb-4">🧴</div>
-                    <h4 class="font-bold mb-2">Protector</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">Debe ser de "Amplio Espectro" (UVA/UVB) con un FPS mínimo de 30 para ser efectivo.</p>
+                <div class="dark-glass-card p-8 text-center reveal" style="transition-delay: 0.15s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center text-3xl mb-5 mx-auto shadow-lg shadow-yellow-500/20">
+                        🧴</div>
+                    <h4 class="font-bold text-xl mb-3 display-font">Protector Solar</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">Debe ser de <strong>"Amplio Espectro"</strong>
+                        (UVA/UVB) con FPS 30+ como mínimo. Reaplicar cada 2 horas.</p>
                 </div>
-                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
-                    <div class="text-3xl mb-4">👁️</div>
-                    <h4 class="font-bold mb-2">Visión</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">La radiación causa cataratas. El uso de lentes con protección UV400 es obligatorio.</p>
+                <div class="dark-glass-card p-8 text-center reveal" style="transition-delay: 0.2s;">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center text-3xl mb-5 mx-auto shadow-lg shadow-emerald-500/20">
+                        👁️</div>
+                    <h4 class="font-bold text-xl mb-3 display-font">Visión Ocular</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">La radiación acelera las cataratas. Usar lentes con
+                        protección <strong>UV400</strong> es indispensable todo el año.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Sección 3: Calculadora UV Interactiva -->
-    <section id="calculadora" class="py-20 px-6 bg-white">
-        <div class="max-w-4xl mx-auto bg-gray-50 rounded-[3rem] p-8 md:p-16 custom-shadow border border-gray-100">
-            <h2 class="text-3xl font-black text-center mb-10">Calculadora de Riesgo UV</h2>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-500 mb-4 uppercase tracking-wider">Índice UV Actual:</label>
-                        <input type="range" id="uvSlider" min="1" max="11" value="6" 
-                               class="w-full h-4 bg-gray-200 rounded-full appearance-none cursor-pointer accent-orange-500">
-                        <div class="flex justify-between mt-4 font-bold text-sm">
-                            <span class="text-green-600">1 (Bajo)</span>
-                            <span class="text-red-600">11 (Extremo)</span>
+    <section id="calculadora" class="py-24 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14 reveal">
+                <span class="text-orange-500 font-bold text-sm tracking-widest uppercase">Sección 3 · Interactivo</span>
+                <h2 class="display-font text-4xl md:text-5xl font-black mt-2 mb-3">Calculadora de Riesgo UV</h2>
+                <p class="text-slate-500 text-lg">Desliza el control para simular diferentes niveles de radiación</p>
+            </div>
+
+            <div
+                class="bg-slate-50 rounded-[3rem] p-8 md:p-14 shadow-2xl shadow-slate-200/60 border border-slate-100 reveal">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-500 mb-5 uppercase tracking-widest">
+                                🌡️ Índice UV Actual:
+                            </label>
+                            <input type="range" id="uvSlider" min="1" max="11" value="6"
+                            class="w-full h-3 bg-slate-200 rounded-full appearance-none cursor-pointer accent-orange-500 hover:accent-orange-600 transition">
+                            <div class="flex justify-between mt-4 font-bold text-xs">
+                                <span class="text-green-600 flex items-center gap-1">🟢 Bajo (1)</span>
+                                <span class="text-yellow-600 flex items-center gap-1">🟡 Moderado</span>
+                                <span class="text-red-600 flex items-center gap-1">🔴 Extremo (11)</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-10 rounded-3xl text-center border border-slate-100 shadow-inner uv-glow-ring">
+                            <p class="text-sm text-slate-400 font-semibold mb-2">NIVEL ACTUAL</p>
+                            <span id="uvValue"
+                                class="display-font text-9xl font-black text-orange-500 leading-none transition-all duration-300">6</span>
+                            <p class="text-xs text-slate-400 mt-3 font-mono">UV INDEX</p>
                         </div>
                     </div>
-                    <div class="p-8 bg-white rounded-3xl text-center border border-gray-100">
-                        <span id="uvValue" class="text-8xl font-black text-orange-500 leading-none">6</span>
+
+                    <div id="recCard"
+                        class="bg-gradient-to-br from-orange-500 to-red-500 text-white p-10 rounded-3xl shadow-2xl shadow-orange-500/25 transition-all duration-500">
+                        <h3 class="text-2xl font-bold mb-5 flex items-center gap-3 display-font">
+                            <span class="text-3xl">🛡️</span> Recomendación
+                        </h3>
+                        <p id="recText" class="text-lg leading-relaxed font-medium">
+                            Riesgo alto. Busca sombra entre 11 a.m. y 4 p.m. Usa protector solar FPS 30+ y ropa protectora.
+                        </p>
+                        <div class="mt-6 flex gap-3 text-sm opacity-80">
+                            <span class="bg-white/20 px-3 py-1.5 rounded-full">🧴 FPS 30+</span>
+                            <span class="bg-white/20 px-3 py-1.5 rounded-full">👒 Sombrero</span>
+                            <span class="bg-white/20 px-3 py-1.5 rounded-full">🕶️ Lentes UV</span>
+                        </div>
                     </div>
                 </div>
-
-                <div id="recCard" class="bg-orange-500 text-white p-8 rounded-3xl shadow-xl transition-all duration-300">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                        🛡️ Recomendación:
-                    </h3>
-                    <p id="recText" class="text-lg leading-relaxed font-medium">
-                        Riesgo alto. Busca sombra entre 11am y 4pm. Usa protector solar y ropa protectora.
-                    </p>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección 4: Meta de Likes -->
-    <section id="meta" class="py-24 px-6 text-center">
-        <div class="max-w-2xl mx-auto">
-            <h2 class="text-4xl font-extrabold mb-4 italic">Meta de Concientización</h2>
-            <p class="text-gray-500 mb-12 italic">Ayúdanos a alcanzar 500 interacciones para validar nuestra campaña escolar.</p>
-            
-            <button onclick="handleLike()" id="btnLike" 
-                    class="interactive-btn bg-red-500 text-white px-12 py-5 rounded-full text-xl font-bold shadow-2xl hover:bg-red-600 transition flex items-center gap-4 mx-auto mb-10">
-                <span id="heart">❤️</span> DAR MI APOYO
-            </button>
+    <!-- Sección 4: Meta de Likes / Concientización -->
+    <section id="meta" class="py-24 px-6 text-center bg-gradient-to-b from-white to-slate-50">
+        <div class="max-w-3xl mx-auto reveal">
+            <span class="text-red-500 font-bold text-sm tracking-widest uppercase">Sección 4 · Participación</span>
+            <h2 class="display-font text-4xl md:text-5xl font-black mt-2 mb-4">Meta de Concientización</h2>
+            <p class="text-slate-500 text-lg mb-10">Ayúdanos a alcanzar <strong>500 interacciones</strong> para validar
+                nuestra campaña escolar. ¡Cada clic cuenta!</p>
 
-            <div class="bg-gray-100 p-8 rounded-3xl border border-gray-200">
-                <div class="text-5xl font-black text-gray-800 mb-4" id="count">384</div>
-                <div class="w-full bg-gray-200 h-6 rounded-full overflow-hidden p-1">
-                    <div id="bar" class="h-full bg-red-500 rounded-full transition-all duration-700" style="width: 76.8%"></div>
+            <button onclick="handleLike()" id="btnLike"
+            class="btn-bounce bg-gradient-to-r from-red-500 to-pink-500 text-white px-14 py-6 rounded-full text-xl font-bold shadow-2xl shadow-red-500/30 hover:shadow-red-500/50 hover:from-red-600 hover:to-pink-600 transition flex items-center gap-4 mx-auto mb-12">
+            <span id="heart" class="text-2xl">❤️</span> DAR MI APOYO
+        </button>
+
+        <div class="bg-white p-10 rounded-3xl border border-slate-200 shadow-xl">
+            <div class="display-font text-7xl font-black text-slate-800 mb-6 transition-all duration-500" id="count">
+                384</div>
+            <div class="w-full bg-slate-200 h-7 rounded-full overflow-hidden p-1.5">
+                <div id="bar" class="h-full bg-gradient-to-r from-red-500 to-pink-500 rounded-full progress-glow transition-all duration-700"
+                style="width: 76.8%;"></div>
+            </div>
+            <div class="flex justify-between mt-5 text-sm font-bold text-slate-400">
+                <span>📍 ACTUAL: <span id="currentLabel">384</span></span>
+                <span>🏁 META: 500</span>
+            </div>
+            <p id="milestoneMsg" class="text-xs text-slate-400 mt-4 italic">¡Faltan 116 para llegar a la meta!</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer mejorado -->
+<footer class="bg-slate-900 text-white py-16 px-6 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-10 text-center md:text-left">
+            <div>
+                <div class="flex items-center gap-3 mb-4 justify-center md:justify-start">
+                    <div
+                        class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center text-white font-black text-lg shadow-lg shadow-orange-500/25">
+                        C62
+                    </div>
+                    <span class="font-bold text-xl">CETIS 62</span>
                 </div>
-                <div class="flex justify-between mt-4 text-xs font-bold text-gray-400">
-                    <span>ACTUAL: 384</span>
-                    <span>META: 500</span>
+                <p class="text-slate-400 text-sm">Centro de Estudios Tecnológicos Industrial y de Servicios No. 62</p>
+                <p class="text-slate-500 text-xs mt-2">Cortazar, Guanajuato</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm uppercase tracking-wider text-slate-300 mb-4">Enlaces Rápidos</h4>
+                <div class="space-y-2 text-sm text-slate-400">
+                    <a href="#informe" class="block hover:text-orange-400 transition">Informe de Investigación</a>
+                    <a href="#organizador" class="block hover:text-orange-400 transition">Organizador Gráfico</a>
+                    <a href="#calculadora" class="block hover:text-orange-400 transition">Calculadora UV</a>
+                    <a href="#meta" class="block hover:text-orange-400 transition">Meta de Likes</a>
                 </div>
             </div>
+            <div>
+                <h4 class="font-bold text-sm uppercase tracking-wider text-slate-300 mb-4">Proyecto</h4>
+                <p class="text-slate-400 text-sm">2do Parcial · Día de la Tierra</p>
+                <p class="text-slate-500 text-xs mt-1">26 de Abril de 2026</p>
+                <p class="text-slate-500 text-xs mt-4">Hecho con ❤️ por el equipo del CETIS 62</p>
+            </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-100 py-12 px-6">
-        <div class="max-w-6xl mx-auto text-center space-y-4">
-            <p class="font-bold text-gray-400 uppercase tracking-widest text-sm">CETIS 62 - Cortazar</p>
-            <p class="text-gray-400 text-xs">Entregado </p>
+        <div class="border-t border-slate-800 mt-12 pt-8 text-center text-xs text-slate-500">
+            &copy; 2026 CETIS 62 · Todos los derechos reservados · Proyecto Escolar
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <script>
-        // Lógica de la calculadora UV
-        const slider = document.getElementById('uvSlider');
-        const display = document.getElementById('uvValue');
-        const recText = document.getElementById('recText');
-        const recCard = document.getElementById('recCard');
+<!-- Toast de agradecimiento -->
+<div id="toast"
+class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[9998] bg-slate-900 text-white px-8 py-4 rounded-full font-bold shadow-2xl opacity-0 translate-y-10 transition-all duration-400 pointer-events-none text-sm">
+¡Gracias por tu apoyo! 🎉
+</div>
 
-        const config = {
-            1: { text: "Riesgo mínimo. Puedes estar afuera sin preocupaciones.", color: "bg-green-500" },
-            2: { text: "Riesgo bajo. Usa gafas en días soleados.", color: "bg-green-500" },
-            3: { text: "Riesgo moderado. Mantente en la sombra cerca del mediodía.", color: "bg-yellow-500" },
-            4: { text: "Riesgo moderado. Aplica protector solar FPS 30+.", color: "bg-yellow-500" },
-            5: { text: "Riesgo moderado. ¡No olvides el sombrero!", color: "bg-yellow-500" },
-            6: { text: "Riesgo alto. Reduce el tiempo bajo el sol entre 11 a.m. y 4 p.m.", color: "bg-orange-500" },
-            7: { text: "Riesgo alto. Ropa protectora y protector solar son obligatorios.", color: "bg-orange-500" },
-            8: { text: "Riesgo muy alto. Busca sombra siempre. La piel se quema rápido.", color: "bg-red-500" },
-            9: { text: "Riesgo muy alto. Minimiza la exposición al sol.", color: "bg-red-500" },
-            10: { text: "Riesgo muy alto. ¡Peligro! Evita salir a la calle.", color: "bg-red-500" },
-            11: { text: "RIESGO EXTREMO. Quédate en interiores. Daño inmediato.", color: "bg-purple-600" }
-        };
+<script>
+    // ============ MENÚ MÓVIL ============
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    // Cerrar menú al hacer clic en un enlace
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
 
-        slider.oninput = function() {
-            const val = this.value;
-            display.innerText = val;
-            display.className = "text-8xl font-black leading-none " + config[val].color.replace('bg-', 'text-');
-            recText.innerText = config[val].text;
-            recCard.className = config[val].color + " text-white p-8 rounded-3xl shadow-xl transition-all duration-300";
-        };
-
-        // Lógica de los Likes
-        let currentLikes = 384;
-        const meta = 500;
-        let hasLiked = false;
-
-        function handleLike() {
-            if(!hasLiked) {
-                currentLikes++;
-                hasLiked = true;
-                
-                document.getElementById('count').innerText = currentLikes;
-                document.getElementById('bar').style.width = (currentLikes / meta * 100) + '%';
-                
-                const btn = document.getElementById('btnLike');
-                btn.innerHTML = "❤️ ¡GRACIAS POR TU APOYO!";
-                btn.classList.replace('bg-red-500', 'bg-gray-800');
-                btn.classList.add('opacity-80', 'cursor-not-allowed');
-
-                if(currentLikes >= meta) {
-                    alert("¡WOW! Hemos llegado a la meta de 500 interacciones para el proyecto.");
-                }
+    // ============ REVEAL ANIMATIONS (Intersection Observer) ============
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
             }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ============ CALCULADORA UV ============
+    const slider = document.getElementById('uvSlider');
+    const display = document.getElementById('uvValue');
+    const recText = document.getElementById('recText');
+    const recCard = document.getElementById('recCard');
+
+    const config = {
+        1: {
+            text: "Riesgo mínimo. Puedes estar al aire libre sin preocupaciones. ¡Disfruta el día!",
+            gradient: "from-green-400 to-emerald-500",
+            shadow: "shadow-green-500/25",
+            tags: ['😎 Sin preocupaciones', '🌳 Sombra opcional']
+        },
+        2: {
+            text: "Riesgo bajo. Usa gafas de sol en días soleados. Ideal para actividades al aire libre.",
+            gradient: "from-green-400 to-emerald-500",
+            shadow: "shadow-green-500/25",
+            tags: ['🕶️ Gafas recomendadas', '⏰ Exposición segura']
+        },
+        3: {
+            text: "Riesgo moderado. Busca la sombra durante las horas centrales del día (11am-3pm).",
+            gradient: "from-yellow-400 to-amber-500",
+            shadow: "shadow-yellow-500/25",
+            tags: ['🌳 Busca sombra', '🧴 FPS 15+']
+        },
+        4: {
+            text: "Riesgo moderado. Aplica protector solar FPS 30+ si estarás al sol por más de 30 minutos.",
+            gradient: "from-yellow-400 to-amber-500",
+            shadow: "shadow-yellow-500/25",
+            tags: ['🧴 FPS 30+', '⏱️ Reaplicar']
+        },
+        5: {
+            text: "Riesgo moderado-alto. No olvides el sombrero de ala ancha y ropa que cubra la piel.",
+            gradient: "from-yellow-400 to-amber-500",
+            shadow: "shadow-yellow-500/25",
+            tags: ['👒 Sombrero', '👕 Ropa protectora']
+        },
+        6: {
+            text: "Riesgo alto. Reduce el tiempo bajo el sol directo entre 11 a.m. y 4 p.m. Usa protección completa.",
+            gradient: "from-orange-500 to-red-500",
+            shadow: "shadow-orange-500/25",
+            tags: ['🧴 FPS 30+', '👒 Sombrero', '🕶️ Lentes UV']
+        },
+        7: {
+            text: "Riesgo alto. Ropa protectora y protector solar son obligatorios. La piel se quema en 30 min.",
+            gradient: "from-orange-500 to-red-500",
+            shadow: "shadow-orange-500/25",
+            tags: ['⚠️ Precaución', '🧴 FPS 50+', '👒 Indispensable']
+        },
+        8: {
+            text: "Riesgo muy alto. Busca sombra constantemente. La piel puede quemarse en 20 minutos.",
+            gradient: "from-red-500 to-rose-600",
+            shadow: "shadow-red-500/25",
+            tags: ['🔴 Peligro', '🏠 Minimiza exposición', '🧴 FPS 50+']
+        },
+        9: {
+            text: "Riesgo muy alto. Minimiza la exposición al sol. Usa protección máxima en todo momento.",
+            gradient: "from-red-500 to-rose-600",
+            shadow: "shadow-red-500/25",
+            tags: ['🔴 Peligro alto', '🏠 Refúgiate', '🧴 FPS 50+ cada hora']
+        },
+        10: {
+            text: "Riesgo muy alto. ¡Peligro! Evita salir a la calle. La piel se quema en 10 minutos.",
+            gradient: "from-red-600 to-rose-700",
+            shadow: "shadow-red-500/30",
+            tags: ['🚫 Evita el sol', '🏠 Interiores', '⚠️ Daño rápido']
+        },
+        11: {
+            text: "RIESGO EXTREMO. Quédate en interiores. El daño en la piel puede ser inmediato e irreversible.",
+            gradient: "from-purple-600 to-violet-700",
+            shadow: "shadow-purple-500/30",
+            tags: ['☠️ EXTREMO', '🚫 No salgas', '🏠 Permanece adentro']
         }
-    </script>
+    };
+
+    function updateCalculator(val) {
+        const data = config[val];
+        display.innerText = val;
+
+        // Actualizar color del número
+        const colorMap = {
+            1: 'text-green-500',
+            2: 'text-green-500',
+            3: 'text-yellow-500',
+            4: 'text-yellow-500',
+            5: 'text-yellow-500',
+            6: 'text-orange-500',
+            7: 'text-orange-500',
+            8: 'text-red-500',
+            9: 'text-red-500',
+            10: 'text-red-600',
+            11: 'text-purple-600'
+        };
+        display.className =
+            'display-font text-9xl font-black leading-none transition-all duration-300 ' + colorMap[val];
+
+        recText.innerText = data.text;
+        recCard.className = 'bg-gradient-to-br ' + data.gradient + ' text-white p-10 rounded-3xl shadow-2xl ' + data
+            .shadow + ' transition-all duration-500';
+
+        // Actualizar tags
+        const tagsContainer = recCard.querySelector('.mt-6');
+        if (tagsContainer) {
+            tagsContainer.innerHTML = data.tags.map(t =>
+                `<span class="bg-white/20 px-3 py-1.5 rounded-full text-sm">${t}</span>`
+            ).join('');
+        }
+    }
+
+    slider.addEventListener('input', function() {
+        updateCalculator(parseInt(this.value));
+    });
+    // Inicializar con valor por defecto
+    updateCalculator(6);
+
+    // ============ SISTEMA DE LIKES CON CONFETI ============
+    let currentLikes = 384;
+    const meta = 500;
+    let hasLiked = false;
+
+    function spawnConfetti() {
+        const colors = ['#fbbf24', '#f97316', '#ef4444', '#ec4899', '#8b5cf6', '#06b6d4', '#10b981', '#f59e0b',
+            '#3b82f6', '#f43f5e'
+        ];
+        const shapes = ['●', '◆', '★', '♥', '▲', '⬟'];
+
+        for (let i = 0; i < 80; i++) {
+            const piece = document.createElement('span');
+            piece.className = 'confetti-piece';
+            piece.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+            piece.style.left = Math.random() * 100 + '%';
+            piece.style.top = -(Math.random() * 40 + 10) + 'px';
+            piece.style.color = colors[Math.floor(Math.random() * colors.length)];
+            piece.style.fontSize = (Math.random() * 18 + 8) + 'px';
+            piece.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+            piece.style.animationDelay = Math.random() * 0.6 + 's';
+            document.body.appendChild(piece);
+
+            setTimeout(() => piece.remove(), 3500);
+        }
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.remove('opacity-0', 'translate-y-10');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+            toast.classList.add('opacity-0', 'translate-y-10');
+            toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 2500);
+    }
+
+    function handleLike() {
+        if (!hasLiked) {
+            currentLikes++;
+            hasLiked = true;
+
+            // Actualizar UI
+            document.getElementById('count').innerText = currentLikes;
+            document.getElementById('currentLabel').innerText = currentLikes;
+            const percentage = (currentLikes / meta * 100);
+            document.getElementById('bar').style.width = percentage + '%';
+
+            const btn = document.getElementById('btnLike');
+            btn.innerHTML = '<span class="text-2xl">✅</span> ¡GRACIAS POR TU APOYO!';
+            btn.classList.remove('from-red-500', 'to-pink-500', 'hover:from-red-600', 'hover:to-pink-600');
+            btn.classList.add('from-slate-700', 'to-slate-800', 'opacity-85', 'cursor-not-allowed');
+            btn.style.pointerEvents = 'none';
+
+            // Mensaje de hitos
+            const milestoneMsg = document.getElementById('milestoneMsg');
+            const faltan = meta - currentLikes;
+
+            if (currentLikes >= meta) {
+                milestoneMsg.textContent = '🎉 ¡META ALCANZADA! ¡500 interacciones! ¡Increíble trabajo, equipo!';
+                milestoneMsg.classList.add('text-green-500', 'font-bold');
+                spawnConfetti();
+                showToast('🏆 ¡LO LOGRAMOS! ¡500 interacciones alcanzadas!');
+                setTimeout(spawnConfetti, 1500);
+            } else if (currentLikes === 400) {
+                milestoneMsg.textContent = '🔥 ¡Llegamos a 400! ¡Solo faltan 100 más!';
+                spawnConfetti();
+                showToast('🔥 ¡400! ¡A sólo 100 de la meta!');
+            } else if (currentLikes === 450) {
+                milestoneMsg.textContent = '⚡ ¡450! ¡Estamos a 50 de la meta! ¡Comparte el enlace!';
+                spawnConfetti();
+                showToast('⚡ ¡450! ¡Ya casi llegamos!');
+            } else if (currentLikes === 499) {
+                milestoneMsg.textContent = '😱 ¡A UNO de la meta! ¡Comparte ya!';
+                showToast('😱 ¡A sólo 1 like de la meta!');
+            } else {
+                milestoneMsg.textContent = `¡Faltan ${faltan} para llegar a la meta! 💪`;
+                showToast('❤️ ¡Gracias por tu apoyo!');
+                // Mini confeti para cada like
+                if (currentLikes % 10 === 0) spawnConfetti();
+            }
+
+            // Animación en el corazón
+            const heart = document.getElementById('heart');
+            heart.style.transform = 'scale(1.6)';
+            setTimeout(() => { heart.style.transform = 'scale(1)'; }, 300);
+            heart.style.transition = 'transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        }
+    }
+
+    // ============ NAVEGACIÓN: RESALTAR SECCIÓN ACTIVA ============
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('text-orange-600', 'bg-orange-50');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('text-orange-600', 'bg-orange-50');
+            }
+        });
+    });
+
+    // ============ SMOOTH SCROLL PARA TODOS LOS ENLACES ============
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offset = 90;
+                const position = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top: position, behavior: 'smooth' });
+            }
+        });
+    });
+
+    console.log('%c☀️ Proyecto UV - CETIS 62 %c🌍',
+        'font-size: 24px; font-weight: bold; color: #f97316;',
+        'font-size: 16px;');
+    console.log('%c¡Gracias por visitar! Comparte este enlace para ayudarnos a llegar a 500 interacciones.',
+    'color: #64748b;');
+    console.log('%cDesarrollado con ❤️ por el equipo del 2do Parcial', 'color: #ef4444; font-style: italic;');
+</script>
 </body>
 </html>
