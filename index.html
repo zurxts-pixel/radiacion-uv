@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protección UV - Proyecto 2do Parcial CETIS 62</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .uv-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        }
+
+        .card-blur {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        .custom-shadow {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        }
+
+        .interactive-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold text-xl text-orange-600">CETIS 62</span>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#informe" class="hover:text-orange-600 transition">Informe</a>
+                <a href="#organizador" class="hover:text-orange-600 transition">Organizador</a>
+                <a href="#calculadora" class="hover:text-orange-600 transition">Calculadora</a>
+                <a href="#meta" class="hover:text-orange-600 transition">Meta 500 Likes</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 px-6 uv-gradient text-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                Protección Personal ante la Radiación UV
+            </h1>
+            <p class="text-lg md:text-xl opacity-90 mb-10">
+                Proyecto para el 2do Parcial - "Día de la Tierra" (26 de Abril)
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#calculadora" class="bg-white text-orange-600 px-8 py-3 rounded-2xl font-bold shadow-lg hover:bg-gray-100 transition">Probar Calculadora</a>
+                <a href="#informe" class="bg-orange-800/30 text-white border border-white/30 px-8 py-3 rounded-2xl font-bold hover:bg-orange-800/40 transition">Ver Investigación</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección 1: Informe de Investigación -->
+    <section id="informe" class="py-20 px-6 max-w-5xl mx-auto">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-2">1. Informe de Investigación</h2>
+            <p class="text-gray-500">Documentación científica y académica</p>
+            <div class="w-16 h-1 bg-orange-500 mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="space-y-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-3 flex items-center gap-2">
+                        <span class="text-orange-500">●</span> Hallazgos Científicos
+                    </h3>
+                    <div class="bg-white p-6 rounded-3xl custom-shadow space-y-4">
+                        <p class="text-sm"><strong>Tipos de Rayos:</strong> La radiación se divide en UVA (envejecimiento) y UVB (quemaduras y cáncer). Los UVC son absorbidos por la atmósfera.</p>
+                        <p class="text-sm border-t pt-4"><strong>Daño Acumulativo:</strong> La piel tiene "memoria celular". La exposición excesiva en la juventud es la causa principal del melanoma en la adultez.</p>
+                        <p class="text-xs text-gray-400 italic font-mono">Fuente: OMS / Skin Cancer Foundation</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-xl mb-3 flex items-center gap-2">
+                        <span class="text-orange-500">●</span> Preguntas de la Comunidad
+                    </h3>
+                    <div class="bg-white p-6 rounded-3xl custom-shadow space-y-4 text-sm">
+                        <details class="cursor-pointer group">
+                            <summary class="font-semibold group-hover:text-orange-600">¿Qué es el Índice UV?</summary>
+                            <p class="mt-2 text-gray-600">Es una medida de la intensidad de la radiación UV en la superficie terrestre. Escala del 1 al 11+.</p>
+                        </details>
+                        <details class="cursor-pointer group">
+                            <summary class="font-semibold group-hover:text-orange-600">¿Protege la ropa común?</summary>
+                            <p class="mt-2 text-gray-600">Depende del tejido. Las telas de trama cerrada y colores oscuros protegen mejor que las ligeras y claras.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-orange-50 p-8 rounded-3xl border border-orange-100">
+                <h3 class="font-bold text-xl mb-4 text-orange-800">Resumen para Entrega</h3>
+                <div class="space-y-4 text-sm text-orange-900/80">
+                    <p><strong>Meta:</strong> Dar a conocer formas de protección ante radiación UV.</p>
+                    <p><strong>Fecha:</strong> 26 de Abril.</p>
+                    <div class="bg-white p-4 rounded-xl font-mono text-xs text-gray-600 leading-relaxed">
+                        // Notas para el equipo:<br>
+                        - Preparar láminas físicas<br>
+                        - Compartir el link del sitio<br>
+                        - Registrar participación
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 2: Organizador Gráfico -->
+    <section id="organizador" class="py-20 bg-gray-900 text-white px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Organizador Gráfico Digital</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Esquema visual de los fundamentos científicos de protección.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
+                    <div class="text-3xl mb-4">🧬</div>
+                    <h4 class="font-bold mb-2">ADN</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">La radiación rompe las cadenas del código genético, causando mutaciones celulares irreversibles.</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
+                    <div class="text-3xl mb-4">🧤</div>
+                    <h4 class="font-bold mb-2">Barrera</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">El uso de manga larga y sombreros de ala ancha reduce la exposición directa en un 70%.</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
+                    <div class="text-3xl mb-4">🧴</div>
+                    <h4 class="font-bold mb-2">Protector</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">Debe ser de "Amplio Espectro" (UVA/UVB) con un FPS mínimo de 30 para ser efectivo.</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
+                    <div class="text-3xl mb-4">👁️</div>
+                    <h4 class="font-bold mb-2">Visión</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">La radiación causa cataratas. El uso de lentes con protección UV400 es obligatorio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 3: Calculadora UV Interactiva -->
+    <section id="calculadora" class="py-20 px-6 bg-white">
+        <div class="max-w-4xl mx-auto bg-gray-50 rounded-[3rem] p-8 md:p-16 custom-shadow border border-gray-100">
+            <h2 class="text-3xl font-black text-center mb-10">Calculadora de Riesgo UV</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-500 mb-4 uppercase tracking-wider">Índice UV Actual:</label>
+                        <input type="range" id="uvSlider" min="1" max="11" value="6" 
+                               class="w-full h-4 bg-gray-200 rounded-full appearance-none cursor-pointer accent-orange-500">
+                        <div class="flex justify-between mt-4 font-bold text-sm">
+                            <span class="text-green-600">1 (Bajo)</span>
+                            <span class="text-red-600">11 (Extremo)</span>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-white rounded-3xl text-center border border-gray-100">
+                        <span id="uvValue" class="text-8xl font-black text-orange-500 leading-none">6</span>
+                    </div>
+                </div>
+
+                <div id="recCard" class="bg-orange-500 text-white p-8 rounded-3xl shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        🛡️ Recomendación:
+                    </h3>
+                    <p id="recText" class="text-lg leading-relaxed font-medium">
+                        Riesgo alto. Busca sombra entre 11am y 4pm. Usa protector solar y ropa protectora.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 4: Meta de Likes -->
+    <section id="meta" class="py-24 px-6 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-4xl font-extrabold mb-4 italic">Meta de Concientización</h2>
+            <p class="text-gray-500 mb-12 italic">Ayúdanos a alcanzar 500 interacciones para validar nuestra campaña escolar.</p>
+            
+            <button onclick="handleLike()" id="btnLike" 
+                    class="interactive-btn bg-red-500 text-white px-12 py-5 rounded-full text-xl font-bold shadow-2xl hover:bg-red-600 transition flex items-center gap-4 mx-auto mb-10">
+                <span id="heart">❤️</span> DAR MI APOYO
+            </button>
+
+            <div class="bg-gray-100 p-8 rounded-3xl border border-gray-200">
+                <div class="text-5xl font-black text-gray-800 mb-4" id="count">384</div>
+                <div class="w-full bg-gray-200 h-6 rounded-full overflow-hidden p-1">
+                    <div id="bar" class="h-full bg-red-500 rounded-full transition-all duration-700" style="width: 76.8%"></div>
+                </div>
+                <div class="flex justify-between mt-4 text-xs font-bold text-gray-400">
+                    <span>ACTUAL: 384</span>
+                    <span>META: 500</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-100 py-12 px-6">
+        <div class="max-w-6xl mx-auto text-center space-y-4">
+            <p class="font-bold text-gray-400 uppercase tracking-widest text-sm">CETIS 62 - Cortazar</p>
+            <p class="text-gray-400 text-xs">Entregado </p>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica de la calculadora UV
+        const slider = document.getElementById('uvSlider');
+        const display = document.getElementById('uvValue');
+        const recText = document.getElementById('recText');
+        const recCard = document.getElementById('recCard');
+
+        const config = {
+            1: { text: "Riesgo mínimo. Puedes estar afuera sin preocupaciones.", color: "bg-green-500" },
+            2: { text: "Riesgo bajo. Usa gafas en días soleados.", color: "bg-green-500" },
+            3: { text: "Riesgo moderado. Mantente en la sombra cerca del mediodía.", color: "bg-yellow-500" },
+            4: { text: "Riesgo moderado. Aplica protector solar FPS 30+.", color: "bg-yellow-500" },
+            5: { text: "Riesgo moderado. ¡No olvides el sombrero!", color: "bg-yellow-500" },
+            6: { text: "Riesgo alto. Reduce el tiempo bajo el sol entre 11 a.m. y 4 p.m.", color: "bg-orange-500" },
+            7: { text: "Riesgo alto. Ropa protectora y protector solar son obligatorios.", color: "bg-orange-500" },
+            8: { text: "Riesgo muy alto. Busca sombra siempre. La piel se quema rápido.", color: "bg-red-500" },
+            9: { text: "Riesgo muy alto. Minimiza la exposición al sol.", color: "bg-red-500" },
+            10: { text: "Riesgo muy alto. ¡Peligro! Evita salir a la calle.", color: "bg-red-500" },
+            11: { text: "RIESGO EXTREMO. Quédate en interiores. Daño inmediato.", color: "bg-purple-600" }
+        };
+
+        slider.oninput = function() {
+            const val = this.value;
+            display.innerText = val;
+            display.className = "text-8xl font-black leading-none " + config[val].color.replace('bg-', 'text-');
+            recText.innerText = config[val].text;
+            recCard.className = config[val].color + " text-white p-8 rounded-3xl shadow-xl transition-all duration-300";
+        };
+
+        // Lógica de los Likes
+        let currentLikes = 384;
+        const meta = 500;
+        let hasLiked = false;
+
+        function handleLike() {
+            if(!hasLiked) {
+                currentLikes++;
+                hasLiked = true;
+                
+                document.getElementById('count').innerText = currentLikes;
+                document.getElementById('bar').style.width = (currentLikes / meta * 100) + '%';
+                
+                const btn = document.getElementById('btnLike');
+                btn.innerHTML = "❤️ ¡GRACIAS POR TU APOYO!";
+                btn.classList.replace('bg-red-500', 'bg-gray-800');
+                btn.classList.add('opacity-80', 'cursor-not-allowed');
+
+                if(currentLikes >= meta) {
+                    alert("¡WOW! Hemos llegado a la meta de 500 interacciones para el proyecto.");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
